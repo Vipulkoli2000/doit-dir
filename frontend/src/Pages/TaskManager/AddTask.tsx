@@ -107,7 +107,7 @@ const AddUser = () => {
               <Input
                 type="assignTo"
                 id="assignTo"
-                placeholder="Weight"
+                placeholder="Assign the task"
                 value={assignTo}
                 onChange={(event) => setAssignTo(event.target.value)}
               />
