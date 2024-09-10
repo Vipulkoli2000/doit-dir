@@ -107,7 +107,7 @@ export default function UserAuthForm() {
           pointerEvents: "none", // Allow interactions through the toaster
         }}
         toastOptions={{
-          duration: 300,
+          duration: 3000,
         }}
       />
       <Form {...form}>

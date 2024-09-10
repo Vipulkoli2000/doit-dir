@@ -17,6 +17,7 @@ import { toast } from "sonner";
 const AddUser = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [name, setName] = React.useState("");
   const [open, setOpen] = React.useState(false);
   // const [passwordConfirmation, setPasswordConfirmation] = React.useState("");
 
@@ -25,7 +26,7 @@ const AddUser = () => {
       .post(
         "/api/register",
         {
-          name: "Vipul",
+          name: name,
           email: email,
           password: password,
         },
@@ -34,6 +35,7 @@ const AddUser = () => {
       .then((response) => {
         toast.success("User created successfully.");
         setOpen(false);
+        window.location.reload();
       })
       .catch((error) => {
         toast.error("Failed to create user.");
@@ -54,6 +56,16 @@ const AddUser = () => {
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
+            <div>
+              <Label htmlFor="name">Name</Label>
+              <Input
+                type="name"
+                id="name"
+                placeholder="Name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </div>
             <div>
               <Label htmlFor="email">Email</Label>
               <Input

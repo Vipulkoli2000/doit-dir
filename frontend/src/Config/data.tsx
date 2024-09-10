@@ -14,27 +14,9 @@ export const navItems: NavItem[] = [
     label: "user",
   },
   {
-    title: "Employee",
-    href: "/",
+    title: "Project",
+    href: "/project",
     icon: "employee",
     label: "employee",
-  },
-  {
-    title: "Profile",
-    href: "/",
-    icon: "profile",
-    label: "profile",
-  },
-  {
-    title: "Kanban",
-    href: "/",
-    icon: "kanban",
-    label: "kanban",
-  },
-  {
-    title: "Login",
-    href: "/",
-    icon: "login",
-    label: "login",
   },
 ];

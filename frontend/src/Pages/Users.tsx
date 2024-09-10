@@ -17,6 +17,7 @@ import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 import { UserNav } from "./Users/UserNav";
 import AddUser from "./Users/AddUser";
 import { Button } from "@/components/ui/button";
+// import toast from "sonner";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
@@ -114,7 +115,14 @@ export const columns: ColumnDef<User>[] = [
             >
               Copy User ID
             </DropdownMenuItem>
-            <DropdownMenuItem>Delete User</DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => {
+                setAlertDialog(true);
+                dispatch(setUserlist(user.id));
+              }}
+            >
+              Delete
+            </DropdownMenuItem>{" "}
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -129,14 +137,25 @@ export function DataTableDemo() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
+  const [alertDialog, setAlertDialog] = useState(false);
+
+  const confirmDelete = async (id) => {
+    const response = await axios.delete(`/api/users/${id}`, {
+      headers: {
+        Authorization: `Bearer ${user.data.token}`,
+      },
+    });
+    queryClient.invalidateQueries("users");
+    toast.success("user deleted successfully");
+  };
 
   // Fetch data from API
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await axios.get("/api/register"); // Replace with your API endpoint
-        setData(response.data);
+        const response = await axios.get("/api/users");
+        setData(response.data.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       } finally {

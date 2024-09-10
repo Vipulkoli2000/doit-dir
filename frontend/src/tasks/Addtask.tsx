@@ -26,14 +26,18 @@ const AddUser = () => {
       .post(
         "/api/tasks",
         {
+          id: "111",
           title: title,
+          project_id: "111",
           description: "description",
           priority: priority,
           weight: "1",
           status: "todo",
           start_date: "2023-01-01",
           end_date: "2023-01-01",
-          assign_to: assign_to,
+          created_at: "2023-01-01",
+          updated_at: "2023-01-01",
+          assign_to: "yash",
         },
         { headers: { "Content-Type": "application/json" } }
       )
@@ -49,7 +53,7 @@ const AddUser = () => {
   return (
     <div>
       <Dialog open={open} onOpenChange={(value) => setOpen(value)}>
-        <DialogTrigger asChild>
+        <DialogTrigger>
           <Button
             variant="outline"
             size="sm"

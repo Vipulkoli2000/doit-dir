@@ -81,5 +81,16 @@ class UserController extends BaseController
         return $this->sendResponse([], 'User logged out successfully.');
     }
 
+    
+    //To fetch all users
+    public function getUsers(): JsonResponse
+{
+     $users = User::all();
+
+    // Return users as a JSON response formatted by UserResource
+    return $this->sendResponse(UserResource::collection($users), 'Users retrieved successfully.');
+}
+
+
 
 }
