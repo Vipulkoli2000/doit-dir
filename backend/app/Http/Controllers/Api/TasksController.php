@@ -79,7 +79,7 @@ class TasksController extends BaseController
             return $this->sendError("Task not found", ['error'=>'Task not found']);
         }
 
-        // $task->project_id = $request->input('project_id');
+        $task->project_id = $request->input('project_id');
         $task->title = $request->input('title');
         $task->description = $request->input("description");
         $task->priority = $request->input('priority'); 
