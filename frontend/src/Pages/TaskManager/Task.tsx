@@ -44,6 +44,7 @@ export type User = {
   description: string;
   priority: string;
   weight: string;
+  roles: string;
 };
 
 // Define your columns
@@ -119,6 +120,26 @@ export const columns: ColumnDef<User>[] = [
     ),
   },
   {
+    accessorKey: "roles",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Role
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const roles = row.getValue("roles");
+      return (
+        <div className="lowercase">{roles ? roles : "No roles assigned"}</div>
+      );
+    },
+  },
+  {
     id: "actions",
     enableHiding: false,
     cell: ({ row }) => {
@@ -179,7 +200,9 @@ export function DataTableDemo() {
       setLoading(true);
       try {
         const response = await axios.get("/api/tasks");
-        setData(response.data);
+        console.log(response.data.data); // Check if roles are included
+
+        setData(response.data.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       } finally {

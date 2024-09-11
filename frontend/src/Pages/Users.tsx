@@ -41,7 +41,7 @@ import {
 export type User = {
   id: string;
   name: string;
-  role: string;
+  roles: string;
   email: string;
 };
 
@@ -75,9 +75,11 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
   },
   {
-    accessorKey: "role",
-    header: "Role",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
+    accessorKey: "roles",
+    header: "Roles",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("roles")}</div>
+    ),
   },
   {
     accessorKey: "email",
