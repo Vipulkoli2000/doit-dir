@@ -41,7 +41,7 @@ import {
 export type User = {
   id: string;
   name: string;
-  role: string;
+  description: string;
   email: string;
 };
 
@@ -75,9 +75,11 @@ export const columns: ColumnDef<User>[] = [
     cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
   },
   {
-    accessorKey: "role",
-    header: "Role",
-    cell: ({ row }) => <div className="capitalize">{row.getValue("role")}</div>,
+    accessorKey: "description",
+    header: "Description",
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("description")}</div>
+    ),
   },
   // {
   //   accessorKey: "email",
@@ -289,7 +291,7 @@ export function DataTableDemo() {
                         colSpan={columns.length}
                         className="h-24 text-center"
                       >
-                        No users found.
+                        No Projects found.
                       </TableCell>
                     </TableRow>
                   )}
