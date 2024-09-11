@@ -179,7 +179,7 @@ export function DataTableDemo() {
       setLoading(true);
       try {
         const response = await axios.get("/api/tasks");
-        setData(response.data.data);
+        setData(response.data);
       } catch (error) {
         console.error("Error fetching user data:", error);
       } finally {
@@ -228,7 +228,7 @@ export function DataTableDemo() {
           {/* Filter Input */}
           <div className="flex items-center py-4">
             <Input
-              placeholder="Filter Users..."
+              placeholder="Filter Task..."
               value={
                 (table.getColumn("priority")?.getFilterValue() as string) ?? ""
               }

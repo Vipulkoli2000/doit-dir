@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label";
 import axios from "axios";
 import { toast } from "sonner";
 
-const AddUser = () => {
+const AddTask = () => {
   const [description, setDescription] = React.useState("");
   const [priority, setPriority] = React.useState("");
   const [title, setTitle] = React.useState("");
@@ -28,13 +28,15 @@ const AddUser = () => {
       .post(
         "/api/tasks",
         {
-          project_id: "111",
+          project_id: "1",
           title: title,
           description: description,
           priority: priority,
           weight: weight,
           assign_to: assignTo,
           status: "todo",
+          start_date: "",
+          end_date: "",
         },
         { headers: { "Content-Type": "application/json" } }
       )
@@ -77,7 +79,7 @@ const AddUser = () => {
               <Input
                 type="Description"
                 id="description"
-                placeholder="Email"
+                placeholder="Description"
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
               />
@@ -124,4 +126,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default AddTask;

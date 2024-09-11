@@ -18,6 +18,7 @@ const AddUser = () => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
+  const [role, setRole] = React.useState("");
   const [open, setOpen] = React.useState(false);
   // const [passwordConfirmation, setPasswordConfirmation] = React.useState("");
 
@@ -29,6 +30,7 @@ const AddUser = () => {
           name: name,
           email: email,
           password: password,
+          role: role,
         },
         { headers: { "Content-Type": "application/json" } }
       )
@@ -84,6 +86,16 @@ const AddUser = () => {
                 placeholder="Password"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
+              />
+            </div>
+            <div>
+              <Label htmlFor="role">Role</Label>
+              <Input
+                type="role"
+                id="role"
+                placeholder="Define the role"
+                value={role}
+                onChange={(event) => setRole(event.target.value)}
               />
             </div>
           </div>

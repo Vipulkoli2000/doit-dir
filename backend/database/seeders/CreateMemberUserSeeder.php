@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\User;
@@ -16,17 +15,30 @@ class CreateMemberUserSeeder extends Seeder
      */
     public function run(): void
     {
-        $user = User::updateOrCreate(
-            ['email' => 'ganesh@gmail.com'], // Search for user by email
+        // Array of users to create
+        $users = [
             [
-                'name' => 'ganesh',
-                'password' => Hash::make('abcd123') // Hash the password
-            ]
-        );
-    
-         // Create or retrieve the admin role
-        $role = Role::firstOrCreate(['name' => 'member']);     
+                'name' => 'Ganesh',
+                'email' => 'ganesh@gmail.com',
+                'password' => 'abcd123',
+            ],
+            [
+                'name' => 'Yash',
+                'email' => 'yash@gmail.com',
+                'password' => 'abcd123',
+            ],
+            [
+                'name' => 'Vipul',
+                'email' => 'vipul@gmail.com',
+                'password' => 'abcd123',
+            ],
+            // Add more users here as needed
+        ];
 
+        // Retrieve or create the member role
+        $role = Role::firstOrCreate(['name' => 'member']);
+
+        // Permissions to assign to the role
         $permissions = [
             "permissions.index",
             "projects.index",
@@ -43,10 +55,22 @@ class CreateMemberUserSeeder extends Seeder
             "taskSubmissions.destroy",
             "show.files",
         ];
-        // $adminRole->givePermissionTo($permissions);
 
+        // Assign permissions to the role
         $role->syncPermissions($permissions);
-     
-        $user->assignRole([$role->id]);
+
+        // Loop through each user and create/update them
+        foreach ($users as $userData) {
+            $user = User::updateOrCreate(
+                ['email' => $userData['email']], // Search for user by email
+                [
+                    'name' => $userData['name'],
+                    'password' => Hash::make($userData['password']) // Hash the password
+                ]
+            );
+
+            // Assign the member role to the user
+            $user->assignRole([$role->id]);
+        }
     }
 }

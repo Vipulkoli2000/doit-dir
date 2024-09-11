@@ -205,7 +205,7 @@ export function DataTableDemo() {
           {/* Filter Input */}
           <div className="flex items-center py-4">
             <Input
-              placeholder="Filter Users..."
+              placeholder="Filter Projects..."
               value={
                 (table.getColumn("email")?.getFilterValue() as string) ?? ""
               }
