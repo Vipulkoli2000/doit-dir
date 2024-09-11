@@ -30,7 +30,7 @@ const AddUser = () => {
           name: name,
           email: email,
           password: password,
-          role: role,
+          roles: role,
         },
         { headers: { "Content-Type": "application/json" } }
       )
@@ -91,8 +91,8 @@ const AddUser = () => {
             <div>
               <Label htmlFor="role">Role</Label>
               <Input
-                type="role"
-                id="role"
+                type="roles"
+                id="roles"
                 placeholder="Define the role"
                 value={role}
                 onChange={(event) => setRole(event.target.value)}
